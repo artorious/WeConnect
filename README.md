@@ -7,7 +7,7 @@
 </p>
 
 # Usage
-
+Please visit the [website](https://artorious.github.io/) for a quick tour.
 
 # Attribution
 
