@@ -7,6 +7,6 @@ from app import app
 @app.route('/', methods=['GET'])
 def index(): 
     """ Return method made by the user to request resource """
-    pass
+    return str(request.method)
     
 

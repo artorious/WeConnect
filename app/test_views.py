@@ -15,7 +15,7 @@ class SimpleTestCase(unittest.TestCase):
 
     def test_index_http_response_status(self):
         response = self.app.get('/')
-        self.assertEqual(404, response.status_code) # Route not set up
+        self.assertEqual(200, response.status_code)
 
 if __name__ == '__main__':
     unittest.main()
