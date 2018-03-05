@@ -10,16 +10,17 @@ class SimpleTestCase(unittest.TestCase):
         self.app = app.test_client()
 
     def test_index_http_method(self):
-        response = self.app.get('/')
+        response = self.app.get('/v1/')
         self.assertIn('GET', str(response.data))
 
     def test_index_http_response_status(self):
-        response = self.app.get('/')
-        self.assertEqual(404, response.status_code) # Route not set up
+        response = self.app.get('/v1/')
+        self.assertEqual(200, response.status_code)
+
+
 
 if __name__ == '__main__':
     unittest.main()
-
 
 
 
