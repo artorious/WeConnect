@@ -8,12 +8,14 @@ from app import app
 @app.route('/v1/', methods=['GET'])
 def index(): 
     """ Return method made by the user to request resource """
-    return str(request.method)
+    return jsonify(request.method)
     
-@app.route('/v1/register', methods=['POST'])
+@app.route('/v1/register/', methods=['POST'])
 def register_user():
     """ Creates a user account """
-    # data= request.get_json()
-    # response = WeConnect.create_user_acc(data['username'], data['email'], data['password'])
-    # return jsonify(response)
-    pass
+    user = WeConnect()
+    
+    data= request.get_json()
+    response = user.create_user_acc(data['username'], data['email'], data['password'])
+    return jsonify(response), 201
+    
