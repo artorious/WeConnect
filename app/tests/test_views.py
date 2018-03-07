@@ -129,6 +129,10 @@ class SimpleTestCases(unittest.TestCase):
         )
         self.assertIn('Deleted Successfully', str(response.data))
     
+    def test_display_business_all_businesses_status(self):
+        response = self.app.get('/v1/businesses/')
+        self.assertEqual(200, response.status_code)
+        
 
 if __name__ == '__main__':
     unittest.main()

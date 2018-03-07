@@ -64,12 +64,13 @@ def delete_a_business(businessid):
     response = business_details.delete_business(businessid)
     return jsonify(response), 200
 
-#TODO:
 @app.route('/v1/businesses/', methods=['GET'])
 def display_all_businesses():
     """ Retrieves all business prfiles"""
-    pass
+    businesses = WeConnect()
+    return jsonify(businesses), 200
 
+#TODO:
 @app.route('/v1/businesses/<businessid>', methods=['GET'])
 def display_a_business():
     """ Retrieves a business profile """

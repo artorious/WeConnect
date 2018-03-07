@@ -88,7 +88,8 @@ class WeConnect(dict):
 # TODO:     
     def list_all_businesses(self):
         """ Retrieves all business """
-        pass
+        return self.__business_info
+
         def list_a_single_business(self):
             """ Retrieves a business profile """
         pass
