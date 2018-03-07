@@ -11,10 +11,14 @@ class TestWeConnectModel(unittest.TestCase):
         self.assertDictEqual({}, self.tester)
 
     def test_create_user_acc_returns_user_info(self):
-        sample_test = self.tester.create_user_acc('art@me', 'art', '123')
+        sample_test = self.tester.create_user_acc('art', 'art@me',  '123')
         sample = {'username': 'art', 'email': 'art@me', 'password':'123'}
         self.assertDictEqual(sample, sample_test)
 
+    def test_login_returns_user_info(self):
+        sample_test = self.tester.login('art', '123')
+        sample = {'username': 'art','password':'123'}
+        self.assertDictEqual(sample, sample_test)
 
 if __name__ == '__main__':
     unittest.main()
