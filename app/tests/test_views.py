@@ -28,14 +28,14 @@ class SimpleTestCases(unittest.TestCase):
 
     def test_register_http_response_status(self):
         response = self.app.post(
-            "/v1/register/", data=json.dumps(self.test_user),
+            '/v1/register/', data=json.dumps(self.test_user),
             headers={'content-type': 'application/json'}
         )
         self.assertEqual(201, response.status_code)
     
     def test_register_returns_required_data(self):
         response = self.app.post(
-            "/v1/register/", data=json.dumps(self.test_user),
+            '/v1/register/', data=json.dumps(self.test_user),
             headers={'content-type': 'application/json'}
         )
         self.assertIn('username', str(response.data))
@@ -44,14 +44,14 @@ class SimpleTestCases(unittest.TestCase):
 
     def test_login_http_response_status(self):
         response = self.app.post(
-            "/v1/login/", data=json.dumps(self.test_user),
+            '/v1/login/', data=json.dumps(self.test_user),
             headers={'content-type': 'application/json'}
         )
         self.assertEqual(201, response.status_code)
     
     def test_login_returns_required_data(self):
         response = self.app.post(
-            "/v1/login/", data=json.dumps(self.test_user),
+            '/v1/login/', data=json.dumps(self.test_user),
             headers={'content-type': 'application/json'}
         )
         self.assertIn('username', str(response.data))
@@ -91,10 +91,27 @@ class SimpleTestCases(unittest.TestCase):
     
     def test_password_reset_required_data(self):
         response = self.app.post(
-            "/v1/reset-password/", data=json.dumps(self.test_user),
+            '/v1/reset-password/', data=json.dumps(self.test_user),
             headers={'content-type': 'application/json'}
         )
         self.assertIn('Success', str(response.data))
+
+    def test_update_a_business_http_response_status(self):
+        response = self.app.put(
+            '/v1/businesses/<businessid>', data=json.dumps(self.test_user),
+            headers={'content-type': 'application/json'}
+        )
+        self.assertEqual(200, response.status_code)
+    
+    def test_update_a_business_returns_required_data(self):
+        response = self.app.put(
+            "/v1/businesses/<businessid>", data=json.dumps(self.test_business),
+            headers={'content-type': 'application/json'}
+        )
+        self.assertIn('username', str(response.data))
+        self.assertIn('business_name', str(response.data))
+        self.assertIn('location', str(response.data))
+        self.assertIn('description', str(response.data))
         
     
 

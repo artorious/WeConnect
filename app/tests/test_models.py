@@ -43,7 +43,10 @@ class TestWeConnectModel(unittest.TestCase):
         sample_test = self.tester.reset_password(sample)
         self.assertNotEqual('Password-reset failed', sample_test)
 
-
+    def test_update_business_success_msg(self):
+        sample = {'username': 'art', 'business_name': 'dukani', 'location': 'kabete', 'description': 'mama-ntilie'}
+        sample_test = self.tester.update_business(sample)
+        self.assertDictEqual(sample, sample_test)
 
 if __name__ == '__main__':
     unittest.main()

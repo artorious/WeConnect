@@ -69,4 +69,13 @@ class WeConnect(dict):
         """ Password reset """
         self.__user_info['password'] = password_data.get('old_password')
         return 'Success'
-    
+
+    def update_business(self, business_update_data):
+        """ Updates business profile """
+        self.__business_info['username'] = business_update_data.get('username')
+        self.__business_info['business_name']\
+            = business_update_data.get('business_name')
+        self.__business_info['location'] = business_update_data.get('location')
+        self.__business_info['description']\
+            = business_update_data.get('description')
+        return self.__business_info

@@ -47,3 +47,11 @@ def password_reset():
     password_data = request.get_json()
     response = passwd_reset_details.reset_password(password_data)
     return jsonify(response), 201
+
+@app.route('/v1/businesses/<businessid>', methods=['PUT'])
+def update_a_business(businessid):
+    """ Updates a business profile """
+    update_a_business_details = WeConnect()
+    update_data = request.get_json()
+    response = update_a_business_details.update_business(update_data)
+    return jsonify(response), 200
