@@ -1,12 +1,15 @@
 #!/usr/bin/env python3
 
+
 from app import app
+import json
 import unittest
 
 class SimpleTestCase(unittest.TestCase):
     
     def setUp(self):
         self.app = app.test_client()
+        self.test_user = {'username': 'art', 'email': 'art@here', 'password': '1223'}
 
     def test_index_http_method(self):
         response = self.app.get('/v1/')
