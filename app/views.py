@@ -2,6 +2,7 @@
 """ Routes for app. Tells lask what to display on which path """
 
 from flask import request, jsonify
+
 from app.models import WeConnect
 from app import app
 
