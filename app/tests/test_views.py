@@ -37,6 +37,12 @@ class SimpleTestCase(unittest.TestCase):
         response = self.app.post("/v1/login/", data=json.dumps(self.test_user), headers={'content-type': 'application/json'})
         self.assertIn('username', str(response.data))
         self.assertIn('password', str(response.data))
+    
+    def test_logout_returns_approp_msg(self):
+        logout_msg = 'You are logged out'
+        response = self.app.post("/v1/logout/", data=json.dumps(logout_msg), headers={'content-type': 'application/json'})
+        self.assertIn('You are logged out', str(response.data))
+
 
 if __name__ == '__main__':
     unittest.main()

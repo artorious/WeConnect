@@ -27,3 +27,8 @@ def login():
     data= request.get_json()
     response = user.login(data['username'], data['password'])
     return jsonify(response), 201
+
+@app.route('/v1/logout/', methods=['POST'])
+def logout():
+    """ Logs out a user """
+    return jsonify("You are logged out")
