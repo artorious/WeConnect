@@ -23,7 +23,7 @@ def register_user():
 def login():
     """ Logs in a user """
     login_details = WeConnect()
-    login_data= request.get_json()
+    login_data = request.get_json()
     response = login_details.login(login_data)
     return jsonify(response), 201
 
@@ -52,6 +52,36 @@ def password_reset():
 def update_a_business(businessid):
     """ Updates a business profile """
     update_a_business_details = WeConnect()
-    update_data = request.get_json()
-    response = update_a_business_details.update_business(update_data)
+    businessid = request.get_json()
+    response = update_a_business_details.update_business(businessid)
     return jsonify(response), 200
+
+@app.route('/v1/businesses/<businessid>', methods=['DELETE'])
+def delete_a_business(businessid):
+    """ Removes a business """
+    business_details = WeConnect()
+    businessid = request.get_json()
+    response = business_details.delete_business(businessid)
+    return jsonify(response), 200
+
+#TODO:
+@app.route('/v1/businesses/', methods=['GET'])
+def display_all_businesses():
+    """ Retrieves all business prfiles"""
+    pass
+
+@app.route('/v1/businesses/<businessid>', methods=['GET'])
+def display_a_business():
+    """ Retrieves a business profile """
+    pass
+
+@app.route('/v1/businesses/<businessid>/reviews', methods=['POST'])
+def add_a_review():
+    """ Add a review for a business """
+    pass
+
+@app.route('/v1/businesses/<businessid>/reviews', methods=['GET'])
+def list_all_business_reviews():
+    """ Get all reviews for a business """
+    pass 
+    
