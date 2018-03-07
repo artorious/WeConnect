@@ -19,6 +19,11 @@ class TestWeConnectModel(unittest.TestCase):
         sample_test = self.tester.login('art', '123')
         sample = {'username': 'art','password':'123'}
         self.assertDictEqual(sample, sample_test)
+    
+    def test_logout_returns_msg(self):
+        sample_test = self.tester.logout()
+        sample = "You are logged out"
+        self.assertEqual(sample, sample_test)
 
 if __name__ == '__main__':
     unittest.main()
