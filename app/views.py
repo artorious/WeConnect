@@ -55,3 +55,11 @@ def update_a_business(businessid):
     update_data = request.get_json()
     response = update_a_business_details.update_business(update_data)
     return jsonify(response), 200
+
+@app.route('/v1/businesses/<businessid>', methods=['DELETE'])
+def delete_a_business(businessid):
+    """ Removes a business """
+    business_details = WeConnect()
+    business_to_delete = request.get_json()
+    response = business_details.delete_business(business_to_delete)
+    return jsonify(response), 200
