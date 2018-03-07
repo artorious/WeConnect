@@ -16,6 +16,15 @@ class SimpleTestCase(unittest.TestCase):
         response = self.app.get('/v1/')
         self.assertEqual(200, response.status_code)
 
+    def test_register_http_response_status(self):
+        response = self.app.post("/v1/register/", data=json.dumps(self.test_user), headers={'content-type': 'application/json'})
+        self.assertEqual(201, response.status_code)
+    
+    def test_register_returns_required_data(self):
+        response = self.app.post("/v1/register/", data=json.dumps(self.test_user), headers={'content-type': 'application/json'})
+        self.assertIn('username', str(response.data))
+        self.assertIn('email', str(response.data))
+        self.assertIn('password', str(response.data))
 
 
 if __name__ == '__main__':
