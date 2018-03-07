@@ -79,3 +79,14 @@ class WeConnect(dict):
         self.__business_info['description']\
             = business_update_data.get('description')
         return self.__business_info
+
+    def delete_business(self, business_name):
+        """ Removes a business """
+        if business_name == self.__business_info.get('business_name'):
+            self.__business_info.clear()
+        return 'Deleted Successfully'
+        
+    def list_all_businesses(self):
+        """ Retrieves all business """
+        pass 
+        

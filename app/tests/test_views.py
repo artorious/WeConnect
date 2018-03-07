@@ -105,7 +105,8 @@ class SimpleTestCases(unittest.TestCase):
     
     def test_update_a_business_returns_required_data(self):
         response = self.app.put(
-            "/v1/businesses/<businessid>", data=json.dumps(self.test_business),
+            '/v1/businesses/<businessid>',
+            data=json.dumps(self.test_business),
             headers={'content-type': 'application/json'}
         )
         self.assertIn('username', str(response.data))
@@ -113,6 +114,20 @@ class SimpleTestCases(unittest.TestCase):
         self.assertIn('location', str(response.data))
         self.assertIn('description', str(response.data))
         
+    def test_delete_a_business_http_response_status(self):
+        response = self.app.delete(
+            '/v1/businesses/<businessid>', data=json.dumps(self.test_user),
+            headers={'content-type': 'application/json'}
+        )
+        self.assertEqual(200, response.status_code)
+    
+    def test_delete_a_business_is_successful(self):
+        response = self.app.delete(
+            '/v1/businesses/<businessid>',
+            data=json.dumps(self.test_business),
+            headers={'content-type': 'application/json'}
+        )
+        self.assertIn('Deleted Successfully', str(response.data))
     
 
 if __name__ == '__main__':
