@@ -21,8 +21,8 @@ class WeConnect(dict):
     
     def logout(self):
         """ Logs out a user """
-        # returns
-        pass
+        return "You are logged out"
+       
 
 # TODO:        
     # def reset_password(self, current_password, new_password):
