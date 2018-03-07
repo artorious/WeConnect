@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-""" Routes for app. Tells lask what to display on which path """
+""" Routes for app Tells lask what to display on which path """
 
 from flask import request, jsonify
 
@@ -14,19 +14,19 @@ def index():
 @app.route('/v1/register/', methods=['POST'])
 def register_user():
     """ Creates a user account """
-    user = WeConnect()
-    
-    data= request.get_json()
-    response = user.create_user_acc(data['username'], data['email'], data['password'])
+    user_details = WeConnect()
+
+    user_data = request.get_json()
+    response = user_details.create_user(user_data)
     return jsonify(response), 201
     
 @app.route('/v1/login/', methods=['POST'])
 def login():
     """ Logs in a user """
-    user = WeConnect()
+    login_details = WeConnect()
     
-    data= request.get_json()
-    response = user.login(data['username'], data['password'])
+    login_data= request.get_json()
+    response = login_details.login(login_data)
     return jsonify(response), 201
 
 @app.route('/v1/logout/', methods=['POST'])
@@ -37,8 +37,8 @@ def logout():
 @app.route('/v1/businesses/', methods=['POST'])
 def register_biz():
     """Register a business """
-    user_biz = WeConnect()
+    business_details = WeConnect()
     
-    data= request.get_json()
-    response = user_biz.reg_business(data['username'], data['business_name'], data['location'] , data['description'])
+    business_data = request.get_json()
+    response = business_details.register_business(business_data)
     return jsonify(response), 201
