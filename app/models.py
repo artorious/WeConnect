@@ -13,10 +13,11 @@ class WeConnect(dict):
         self.user_info = {'username': username, 'email': user_email, 'password': user_password}
         return self.user_info
         
-    def login(self, username, password):
+    def login(self, username, user_password):
         """ Logs in a user """
-        # returns
-        pass
+        login_info = {'username': username,  'password': user_password}
+        return login_info
+       
     
     def logout(self):
         """ Logs out a user """
