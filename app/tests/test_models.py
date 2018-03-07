@@ -26,8 +26,25 @@ class TestWeConnectModel(unittest.TestCase):
         self.assertEqual(sample, sample_test)
 
     def test_register_business_returns_user_info(self):
-        sample = {'username': 'art', 'business_name': 'dukani', 'location': 'kabete', 'description': 'mama-ntilie'}
+        sample = {
+            'username': 'art', 'business_name': 'dukani',
+            'location': 'kabete', 'description': 'mama-ntilie'
+        }
         sample_test = self.tester.register_business(sample)
         self.assertDictEqual(sample, sample_test)
+
+    def test_reset_password_returns_success_msg(self):
+        sample = {'password': '1234', 'new_password': '4321'}
+        sample_test = self.tester.reset_password(sample)
+        self.assertEqual('Success', sample_test)
+
+    def test_reset_password_returns_failiure_msg(self):
+        sample = {'password': None, 'new_password': '4321'}
+        sample_test = self.tester.reset_password(sample)
+        self.assertNotEqual('Password-reset failed', sample_test)
+
+
+
 if __name__ == '__main__':
     unittest.main()
+    

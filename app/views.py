@@ -15,7 +15,6 @@ def index():
 def register_user():
     """ Creates a user account """
     user_details = WeConnect()
-
     user_data = request.get_json()
     response = user_details.create_user(user_data)
     return jsonify(response), 201
@@ -24,7 +23,6 @@ def register_user():
 def login():
     """ Logs in a user """
     login_details = WeConnect()
-    
     login_data= request.get_json()
     response = login_details.login(login_data)
     return jsonify(response), 201
@@ -35,10 +33,17 @@ def logout():
     return jsonify("You are logged out")
 
 @app.route('/v1/businesses/', methods=['POST'])
-def register_biz():
+def register_business():
     """Register a business """
     business_details = WeConnect()
-    
     business_data = request.get_json()
     response = business_details.register_business(business_data)
+    return jsonify(response), 201
+
+@app.route('/v1/reset-password/', methods=['POST'])
+def password_reset():
+    """ Password reset """
+    passwd_reset_details = WeConnect()
+    password_data = request.get_json()
+    response = passwd_reset_details.reset_password(password_data)
     return jsonify(response), 201

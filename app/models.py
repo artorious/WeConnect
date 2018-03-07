@@ -63,16 +63,10 @@ class WeConnect(dict):
             'description': business_data.get('description')
         }
         return self.__business_info
-# TODO:        
-    def reset_password(self, current_password, new_password):
-        """ Password reset """
-        # returns
-        pass
-
-    def update_business(self):
-        """ Updates business profile """
-        # returns
-        pass
-    
 
         
+    def reset_password(self, password_data):
+        """ Password reset """
+        self.__user_info['password'] = password_data.get('old_password')
+        return 'Success'
+    
