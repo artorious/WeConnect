@@ -25,5 +25,9 @@ class TestWeConnectModel(unittest.TestCase):
         sample = "You are logged out"
         self.assertEqual(sample, sample_test)
 
+    def test_register_business_returns_user_info(self):
+        sample_test = self.tester.reg_business('art', 'dukani', 'kabete', 'mama-ntilie')
+        sample = {'username': 'art', 'business_name': 'dukani', 'location': 'kabete', 'description': 'mama-ntilie'}
+        self.assertDictEqual(sample, sample_test)
 if __name__ == '__main__':
     unittest.main()

@@ -33,3 +33,12 @@ def login():
 def logout():
     """ Logs out a user """
     return jsonify("You are logged out")
+
+@app.route('/v1/businesses/', methods=['POST'])
+def register_biz():
+    """Register a business """
+    user_biz = WeConnect()
+    
+    data= request.get_json()
+    response = user_biz.reg_business(data['username'], data['business_name'], data['location'] , data['description'])
+    return jsonify(response), 201

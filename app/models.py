@@ -7,6 +7,7 @@ class WeConnect(dict):
     def __init__(self):
         """ Init """
         self.user_info = {}
+        self.business_info = {}
         self.login_status = False
         self.logout_status = False
 
@@ -27,16 +28,19 @@ class WeConnect(dict):
         """ Logs out a user """
         self.logout_status = True
         return "You are logged out"
-       
-
+        
+    def reg_business(self, username, business_name, location, description):
+        """ Register a business """
+        self.business_info = {
+            'username': username, 'business_name': business_name,
+            'location': location, 'description': description
+        }
+        return self.business_info
 # TODO:        
-    # def reset_password(self, current_password, new_password):
-    # 	""" Password reset """
-    #     # returns 
-    #     pass
+    def reset_password(self, current_password, new_password):
+        """ Password reset """
+        # returns
+        pass
     
-    # def reg_business(self, business_name, location, description):
-	# 	""" Register a business """
-    #     # returns 
-	# 	pass
+
         
