@@ -1,44 +1,74 @@
 #!/usr/bin/env python3
-""" Models - data representation """
+""" Models (data representation) for WeConnect web application """
 
 class WeConnect(dict):
-    """ Holds methods for users, businesses and reviews """
-
-    def __init__(self):
-        """ Init """
-        self.user_info = {}
-        self.business_info = {}
-        self.login_status = False
-        self.logout_status = False
-
-
-    def create_user_acc(self, username, user_email, user_password):
-        """ Create User account """
-        self.user_info = {'username': username, 'email': user_email, 'password': user_password}
-        return self.user_info
-        
-    def login(self, username, user_password):
-        """ Logs in a user """
-        login_info = {'username': username,  'password': user_password}
-        self.login_status = True
-        return login_info
-       
+    """ Holds methods for CRUD users, businesses and reviews
     
+    Attributes:
+        user_info (dict) : A dictionary that holds user information.
+        business_info (dict) : A dictionary that holds businesses 
+                                information and profiles.
+        
+        login_status (bool): A boolean value that indicates whether the 
+                                user is logged in or not (True/False).
+        reviews (dict): A dictionary that holds all the reviews for all 
+                            businesses
+    """
+    
+    __user_info = {}
+    __business_info = {}
+    __login_status = False
+    __reviews = {}
+
+    def __init__(
+            self, user_info={}, business_info={},
+            login_status=False, reviews={}
+        ):
+        self.__user_info = user_info
+        self.__business_info = business_info
+        self.__login_status = login_status
+        self.__reviews = reviews
+
+    def create_user(self, user_data):
+        """ Create User account """
+        self.__user_info = {
+            'username': user_data.get('username'),
+            'email': user_data.get('email'),
+            'password': user_data.get('password')
+        }
+        return self.__user_info
+        
+    def login(self, login_data):
+        """ Logs in a user """
+
+        self.__login_info = {
+            'username': login_data.get('username'),
+            'password': login_data.get('password')
+        }
+        self.__login_status = True
+        return self.__login_info
+       
     def logout(self):
         """ Logs out a user """
-        self.logout_status = True
+        self.__login_status = False
         return "You are logged out"
         
-    def reg_business(self, username, business_name, location, description):
+    def register_business(self, business_data):
         """ Register a business """
-        self.business_info = {
-            'username': username, 'business_name': business_name,
-            'location': location, 'description': description
+        self.__business_info = {
+            'username': business_data.get('username'), 
+            'business_name': business_data.get('business_name'),
+            'location': business_data.get('location'), 
+            'description': business_data.get('description')
         }
-        return self.business_info
+        return self.__business_info
 # TODO:        
     def reset_password(self, current_password, new_password):
         """ Password reset """
+        # returns
+        pass
+
+    def update_business(self):
         # returns
         pass
     

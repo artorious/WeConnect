@@ -10,13 +10,13 @@ class TestWeConnectModel(unittest.TestCase):
     def test_WeConnet_inits_with_empty_dict(self):
         self.assertDictEqual({}, self.tester)
 
-    def test_create_user_acc_returns_user_info(self):
-        sample_test = self.tester.create_user_acc('art', 'art@me',  '123')
+    def test_create_user_returns_user_info(self):
         sample = {'username': 'art', 'email': 'art@me', 'password':'123'}
+        sample_test = self.tester.create_user(sample)
         self.assertDictEqual(sample, sample_test)
 
     def test_login_returns_user_info(self):
-        sample_test = self.tester.login('art', '123')
+        sample_test = self.tester.login({'username': 'art','password':'123'})
         sample = {'username': 'art','password':'123'}
         self.assertDictEqual(sample, sample_test)
     
@@ -26,8 +26,8 @@ class TestWeConnectModel(unittest.TestCase):
         self.assertEqual(sample, sample_test)
 
     def test_register_business_returns_user_info(self):
-        sample_test = self.tester.reg_business('art', 'dukani', 'kabete', 'mama-ntilie')
         sample = {'username': 'art', 'business_name': 'dukani', 'location': 'kabete', 'description': 'mama-ntilie'}
+        sample_test = self.tester.register_business(sample)
         self.assertDictEqual(sample, sample_test)
 if __name__ == '__main__':
     unittest.main()
