@@ -18,6 +18,7 @@ class SimpleTestCases(unittest.TestCase):
             'location': 'kabete', 'description': 'mama-ntilie'
         }
         self.test_business_name = 'a_business'
+        self.test_business_reviews = {'a_business': 'rat', 'faced','bastard'}
 
     def test_index_http_method(self):
         response = self.app.get('/v1/')
@@ -141,7 +142,17 @@ class SimpleTestCases(unittest.TestCase):
             headers={'content-type': 'application/json'}
         )
         self.assertEqual(200, response.status_code)
-        
+    
+    def test_add_a_review_is_successful(self):
+            response = self.app.post(
+            '/v1/businesses/<businessid>/reviews',
+            data=json.dumps(self.test_business_name),
+            headers={'content-type': 'application/json'}
+        )
+            self.assertIn('Added Successfully', str(response.data))
+
+    def test_display_all_businesses_status(self):
+            pass
 
 if __name__ == '__main__':
     unittest.main()

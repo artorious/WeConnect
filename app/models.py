@@ -18,12 +18,12 @@ class WeConnect(dict):
     __user_info = {}
     __business_info = {}
     __login_status = False
-    __reviews = {}
+    __reviews = []
     __login_info = {}
 
     def __init__(
             self, user_info={}, business_info={},
-            login_status=False, reviews={}
+            login_status=False, reviews=[]
         ):
         self.__user_info = user_info
         self.__business_info = business_info
@@ -93,12 +93,13 @@ class WeConnect(dict):
     def list_a_single_business(self, business_name):
         """ Retrieves a business profile """
         return self.__business_info.get(str(business_name))
-# TODO:
+
     def add_a_review(self, review_data):
         """ Add a review for a business """
-        pass
-    
+        self.__reviews.extend(review_data)
+        return 'Added Successfully'
+        
     def list_all_reviews(self, business_data):
         """ Get all reviews for a business """
-        pass
+        return self.__reviews
         
