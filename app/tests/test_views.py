@@ -17,7 +17,8 @@ class SimpleTestCases(unittest.TestCase):
             'username': 'art', 'business_name': 'dukani',
             'location': 'kabete', 'description': 'mama-ntilie'
         }
-    
+        self.test_business_name = 'a_business'
+
     def test_index_http_method(self):
         response = self.app.get('/v1/')
         self.assertIn('GET', str(response.data))
@@ -129,8 +130,16 @@ class SimpleTestCases(unittest.TestCase):
         )
         self.assertIn('Deleted Successfully', str(response.data))
     
-    def test_display_business_all_businesses_status(self):
+    def test_display_all_businesses_status(self):
         response = self.app.get('/v1/businesses/')
+        self.assertEqual(200, response.status_code)
+    
+    def test_display_a_business_status(self):
+        response = self.app.get(
+            '/v1/businesses/<businessid>',
+            data=json.dumps(self.test_business_name),
+            headers={'content-type': 'application/json'}
+        )
         self.assertEqual(200, response.status_code)
         
 

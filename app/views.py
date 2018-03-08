@@ -70,19 +70,23 @@ def display_all_businesses():
     businesses = WeConnect()
     return jsonify(businesses), 200
 
-#TODO:
-@app.route('/v1/businesses/<businessid>', methods=['GET'])
-def display_a_business():
-    """ Retrieves a business profile """
-    pass
 
+@app.route('/v1/businesses/<businessid>', methods=['GET'])
+def display_a_business(businessid):
+    """ Retrieves a business profile """
+    business_details = WeConnect()
+    businessid = request.get_json()
+    response = business_details.list_a_single_business(str(businessid))
+    return jsonify(response), 200
+
+#TODO:
 @app.route('/v1/businesses/<businessid>/reviews', methods=['POST'])
-def add_a_review():
+def add_a_review(businessid):
     """ Add a review for a business """
     pass
 
 @app.route('/v1/businesses/<businessid>/reviews', methods=['GET'])
-def list_all_business_reviews():
+def list_all_business_reviews(businessid):
     """ Get all reviews for a business """
     pass 
     

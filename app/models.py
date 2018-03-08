@@ -85,15 +85,15 @@ class WeConnect(dict):
         if business_name == self.__business_info.get('business_name'):
             self.__business_info.clear()
         return 'Deleted Successfully'
-# TODO:     
+     
     def list_all_businesses(self):
         """ Retrieves all business """
         return self.__business_info
 
-        def list_a_single_business(self):
-            """ Retrieves a business profile """
-        pass
-
+    def list_a_single_business(self, business_name):
+        """ Retrieves a business profile """
+        return self.__business_info.get(str(business_name))
+# TODO:
     def add_a_review(self, review_data):
         """ Add a review for a business """
         pass
