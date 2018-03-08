@@ -18,7 +18,11 @@ class SimpleTestCases(unittest.TestCase):
             'location': 'kabete', 'description': 'mama-ntilie'
         }
         self.test_business_name = 'a_business'
-        self.test_business_reviews = {'a_business': 'rat', 'faced','bastard'}
+        self.test_business_reviews = {'a_business': 'rat', 'faced':'bastard'}
+
+
+
+
 
     def test_index_http_method(self):
         response = self.app.get('/v1/')
@@ -67,14 +71,14 @@ class SimpleTestCases(unittest.TestCase):
         )
         self.assertIn('You are logged out', str(response.data))
 
-    def test_register_biz_http_response_status(self):
+    def test_register_business_http_response_status(self):
         response = self.app.post(
             "/v1/businesses/", data=json.dumps(self.test_business),
             headers={'content-type': 'application/json'}
         )
         self.assertEqual(201, response.status_code)
     
-    def test_register_biz_returns_required_data(self):
+    def test_register_business_returns_required_data(self):
         response = self.app.post(
             "/v1/businesses/", data=json.dumps(self.test_business),
             headers={'content-type': 'application/json'}
@@ -118,7 +122,7 @@ class SimpleTestCases(unittest.TestCase):
         
     def test_delete_a_business_http_response_status(self):
         response = self.app.delete(
-            '/v1/businesses/<businessid>', data=json.dumps(self.test_user),
+            '/v1/businesses/<businessid>', data=json.dumps(self.test_business),
             headers={'content-type': 'application/json'}
         )
         self.assertEqual(200, response.status_code)
@@ -151,7 +155,7 @@ class SimpleTestCases(unittest.TestCase):
         )
             self.assertIn('Added Successfully', str(response.data))
 
-    def test_display_all_businesses_status(self):
+    def test_display_all_business_reviews_status(self):
             pass
 
 if __name__ == '__main__':

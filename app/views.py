@@ -6,6 +6,8 @@ from flask import request, jsonify
 from app.models import WeConnect
 from app import app
 
+business_inst = WeConnect()
+
 @app.route('/v1/', methods=['GET'])
 def index(): 
     """ Return method made by the user to request resource """
@@ -14,17 +16,15 @@ def index():
 @app.route('/v1/register/', methods=['POST'])
 def register_user():
     """ Creates a user account """
-    user_details = WeConnect()
     user_data = request.get_json()
-    response = user_details.create_user(user_data)
+    response = business_inst.create_user(user_data)
     return jsonify(response), 201
     
 @app.route('/v1/login/', methods=['POST'])
 def login():
     """ Logs in a user """
-    login_details = WeConnect()
     login_data = request.get_json()
-    response = login_details.login(login_data)
+    response = business_inst.login(login_data)
     return jsonify(response), 201
 
 @app.route('/v1/logout/', methods=['POST'])
@@ -35,56 +35,50 @@ def logout():
 @app.route('/v1/businesses/', methods=['POST'])
 def register_business():
     """Register a business """
-    business_details = WeConnect()
     business_data = request.get_json()
-    response = business_details.register_business(business_data)
+    response = business_inst.register_business(business_data)
     return jsonify(response), 201
 
 @app.route('/v1/reset-password/', methods=['POST'])
 def password_reset():
     """ Password reset """
-    passwd_reset_details = WeConnect()
     password_data = request.get_json()
-    response = passwd_reset_details.reset_password(password_data)
+    response = business_inst.reset_password(password_data)
     return jsonify(response), 201
 
 @app.route('/v1/businesses/<businessid>', methods=['PUT'])
 def update_a_business(businessid):
     """ Updates a business profile """
-    update_a_business_details = WeConnect()
     businessid = request.get_json()
-    response = update_a_business_details.update_business(businessid)
+    response = business_inst.update_business(businessid)
     return jsonify(response), 200
 
 @app.route('/v1/businesses/<businessid>', methods=['DELETE'])
 def delete_a_business(businessid):
     """ Removes a business """
-    business_details = WeConnect()
     businessid = request.get_json()
-    response = business_details.delete_business(businessid)
+    response = business_inst.delete_business(businessid)
     return jsonify(response), 200
 
 @app.route('/v1/businesses/', methods=['GET'])
 def display_all_businesses():
     """ Retrieves all business prfiles"""
-    businesses = WeConnect()
+    businesses = business_inst.list_all_businesses()
     return jsonify(businesses), 200
 
 
 @app.route('/v1/businesses/<businessid>', methods=['GET'])
 def display_a_business(businessid):
     """ Retrieves a business profile """
-    business_details = WeConnect()
     businessid = request.get_json()
-    response = business_details.list_a_single_business(str(businessid))
+    response = business_inst.list_a_single_business(str(businessid))
     return jsonify(response), 200
 
 @app.route('/v1/businesses/<businessid>/reviews', methods=['POST'])
 def add_a_review(businessid):
     """ Add a review for a business """
-    business_details = WeConnect()
     businessid = request.get_json()
-    response = business_details.add_a_review(str(businessid))
+    response = business_inst.add_a_review(str(businessid))
     return jsonify(response), 201
 
 #TODO:
