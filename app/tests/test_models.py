@@ -11,7 +11,7 @@ class TestWeConnectModel(unittest.TestCase):
         self.assertDictEqual({}, self.tester)
 
     def test_create_user_returns_user_info(self):
-        sample = {'username': 'art', 'email': 'art@me', 'password':'123'}
+        sample = {'username': 'arthur', 'email': 'arthur@hotmail.com', 'password':'123456'}
         sample_test = self.tester.create_user(sample)
         self.assertDictEqual(sample, sample_test)
 

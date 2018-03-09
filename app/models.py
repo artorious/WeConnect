@@ -27,6 +27,7 @@ class WeConnect(dict):
         self.reviews = reviews
         self.users = users
         self.all_businesses_info = all_businesses_info
+        self.updated_record = None
 
     def create_user(self, user_data):
         """ (WeConnect, dict) -> dict
@@ -92,7 +93,8 @@ class WeConnect(dict):
             if business_entity['username'] == business_update_data.get('username'):
                 business_entity.update(business_update_data)
                 self.all_businesses_info.append(business_entity)
-                return business_entity
+                self.updated_record = business_entity
+                return updated_record
             
     def delete_business(self, business_name):
         """ (WeConnect, str) -> str

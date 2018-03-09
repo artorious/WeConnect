@@ -8,38 +8,38 @@ from app import app
 
 business_inst = WeConnect()
 
-@app.route('/v1/', methods=['GET'])
+@app.route('/v1', methods=['GET'])
 def index(): 
     """ Return method made by the user to request resource """
     return jsonify(request.method)
     
-@app.route('/v1/register/', methods=['POST'])
+@app.route('/v1/auth/register', methods=['POST'])
 def register_user():
     """ Creates a user account """
     user_data = request.get_json()
     response = business_inst.create_user(user_data)
     return jsonify(response), 201
     
-@app.route('/v1/login/', methods=['POST'])
+@app.route('/v1/auth/login', methods=['POST'])
 def login():
     """ Logs in a user """
     login_data = request.get_json()
     response = business_inst.login(login_data)
     return jsonify(response), 201
 
-@app.route('/v1/logout/', methods=['POST'])
+@app.route('/v1/auth/logout', methods=['POST'])
 def logout():
     """ Logs out a user """
     return jsonify("You are logged out")
 
-@app.route('/v1/businesses/', methods=['POST'])
+@app.route('/v1/auth/businesses', methods=['POST'])
 def register_business():
     """Register a business """
     business_data = request.get_json()
     response = business_inst.register_business(business_data)
     return jsonify(response), 201
 
-@app.route('/v1/reset-password/', methods=['POST'])
+@app.route('/v1/auth/reset-password', methods=['POST'])
 def password_reset():
     """ Password reset """
     password_data = request.get_json()
@@ -60,7 +60,7 @@ def delete_a_business(businessid):
     response = business_inst.delete_business(businessid)
     return jsonify(response), 200
 
-@app.route('/v1/businesses/', methods=['GET'])
+@app.route('/v1/businesses', methods=['GET'])
 def display_all_businesses():
     """ Retrieves all business prfiles"""
     businesses = business_inst.list_all_businesses()

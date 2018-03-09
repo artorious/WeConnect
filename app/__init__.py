@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-""" Initialization file """
+
 from flask import Flask
 
 # Init
